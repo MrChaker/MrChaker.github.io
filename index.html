@@ -302,9 +302,9 @@
     <p class="job-meta">San Francisco · 09/2025 — present</p>
     <ul>
       <li>Optimized workflow execution <strong>10x</strong> by rewriting the service that installs and compiles app integrations</li>
-      <li>Built a <strong>canary release system</strong> — middleware routing selected platforms to a canary app instance, unified canary/dedicated worker groups, and live job migration between worker queues for safe zero-downtime rollouts</li>
+      <li>Built a <strong>canary release system</strong> that rolls out new versions to a small set of platforms first, catching issues before they reach production customers</li>
       <li>Rewrote the distributed rate limiter into <strong>shared concurrency pools</strong> backed by Redis Lua scripts, letting enterprise customers pool execution limits across projects</li>
-      <li>Improved platform observability: <strong>OpenTelemetry</strong> log transport, a health dashboard surfacing run success rates, live queue depth and 30-day history, and per-worker sandbox state/RAM monitoring</li>
+      <li>Improved platform observability with a <strong>health dashboard</strong> surfacing run success rates, live queue depth and 30-day history, plus per-worker sandbox state/RAM monitoring</li>
       <li>Built performance tracking and hardware checking for self-hosted customers</li>
       <li>Cut hot-reload time from <strong>15s to 7s</strong> by caching parts of the codebase</li>
     </ul>
