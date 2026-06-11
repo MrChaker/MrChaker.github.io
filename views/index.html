@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>views — Chaker Atallah</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-soft: #111111;
+    --border: #1f1f1f;
+    --text: #d4d4d4;
+    --muted: #737373;
+    --accent: #4ade80;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { border-bottom: 1px solid var(--accent); }
+
+  .panel {
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+  .dot.green { background: var(--accent); }
+
+  .panel-body { padding: 32px 24px; }
+
+  .prompt { color: var(--muted); margin-bottom: 24px; }
+  .prompt .dollar { color: var(--accent); }
+
+  .big {
+    font-size: clamp(40px, 12vw, 64px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .big-label {
+    color: var(--accent);
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding: 10px 0;
+    font-size: 13px;
+  }
+  .row .key { color: var(--muted); }
+  .row .val { color: var(--text); }
+
+  .error {
+    color: var(--muted);
+    font-size: 13px;
+    border: 1px dashed var(--border);
+    padding: 16px;
+    margin-top: 8px;
+  }
+  .error code { color: var(--accent); }
+
+  .back { margin-top: 32px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <div class="panel-head">
+    <span class="dot green"></span><span class="dot"></span><span class="dot"></span>
+    <span>analytics — mrchaker.github.io</span>
+  </div>
+  <div class="panel-body">
+    <p class="prompt"><span class="dollar">$</span> curl /api/views</p>
+
+    <p class="big" id="total">…</p>
+    <p class="big-label">total visitors</p>
+
+    <div id="breakdown">
+      <div class="row"><span class="key">/ (home)</span><span class="val" id="home">…</span></div>
+      <div class="row"><span class="key">/views/</span><span class="val" id="views">…</span></div>
+    </div>
+
+    <div class="error" id="error" style="display:none">
+      Counter not reachable yet. Stats are served by
+      <a href="https://mrchaker.goatcounter.com" target="_blank" rel="noopener">mrchaker.goatcounter.com</a> —
+      make sure the GoatCounter site exists and <code>"Allow adding visitor counts"</code>
+      is enabled in its settings.
+    </div>
+
+    <p class="back"><a href="/">&larr; back to portfolio</a></p>
+  </div>
+</div>
+
+<script>
+  const BASE = "https://mrchaker.goatcounter.com/counter";
+
+  async function count(path) {
+    const res = await fetch(`${BASE}/${path}.json`);
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    // counts come back as strings with thousand separators
+    return (data.count_unique ?? data.count ?? "0").toString().trim();
+  }
+
+  function set(id, value) {
+    document.getElementById(id).textContent = value;
+  }
+
+  (async () => {
+    const results = await Promise.allSettled([
+      count("TOTAL"),
+      count(encodeURIComponent("/")),
+      count(encodeURIComponent("/views/")),
+    ]);
+    const [total, home, views] = results.map(r =>
+      r.status === "fulfilled" ? r.value : "—"
+    );
+    set("total", total);
+    set("home", home);
+    set("views", views);
+    if (results.every(r => r.status === "rejected")) {
+      document.getElementById("error").style.display = "block";
+    }
+  })();
+</script>
+
+<script data-goatcounter="https://mrchaker.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
