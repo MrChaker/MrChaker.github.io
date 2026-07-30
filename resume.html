@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chaker Atallah — Résumé</title>
+<style>
+  /* ponytail: ATS-safe resume — pure block flow, no floats/flex/tables/columns, so the PDF
+     text stream reads top-to-bottom in DOM order. Edit this file and re-run the Chrome print command. */
+  @page { size: A4; margin: 14mm 16mm; }
+
+  :root {
+    --accent: #c0392b;
+    --text: #1a1a1a;
+    --muted: #555;
+    --rule: #d8d8d8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--text);
+    font-size: 10.2pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a { color: var(--text); text-decoration: none; }
+
+  /* ---------- header ---------- */
+  header { text-align: center; margin-bottom: 14px; }
+  h1 { font-size: 28pt; font-weight: 300; letter-spacing: 1px; }
+  h1 b { font-weight: 700; }
+  .role { color: var(--accent); font-variant: small-caps; letter-spacing: 2px; font-size: 11pt; margin-top: 2px; }
+  .location { font-style: italic; color: var(--muted); font-size: 9.5pt; margin-top: 4px; }
+  .contact { font-size: 9.5pt; margin-top: 6px; }
+  .contact span { margin: 0 6px; color: var(--rule); }
+  .summary { margin: 10px 0 0; color: var(--muted); font-size: 9.8pt; text-align: left; }
+
+  /* ---------- sections ---------- */
+  section { margin-top: 15px; break-inside: avoid; }
+  h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+    break-after: avoid;
+  }
+
+  .entry { margin-bottom: 10px; break-inside: avoid; }
+  .entry:last-child { margin-bottom: 0; }
+  .title { font-weight: 700; font-size: 10.8pt; }
+  .meta { color: var(--muted); font-style: italic; font-size: 9.3pt; margin-bottom: 3px; }
+  .meta b { color: #333; font-style: normal; font-weight: 600; }
+
+  /* real list markers (no positioned ::before) so bullets stay in text-stream order for ATS */
+  ul { list-style: disc; padding-left: 16px; }
+  li { margin-bottom: 2px; color: #2b2b2b; }
+  li::marker { color: var(--accent); }
+  li b { font-weight: 600; }
+
+  .skill { margin-bottom: 4px; }
+  .skill b { font-weight: 700; }
+  .proj { margin-bottom: 6px; }
+  .proj b { font-weight: 700; }
+  .proj .stack { color: var(--accent); font-size: 9pt; }
+  .proj .desc { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Chaker <b>Atallah</b></h1>
+  <div class="role">Full-Stack / Backend Engineer</div>
+  <div class="location">Montpellier, France</div>
+  <div class="contact">
+    (+33) 6 02 92 31 05 <span>|</span>
+    <a href="mailto:mr.chakerw@gmail.com">mr.chakerw@gmail.com</a> <span>|</span>
+    <a href="https://mrchaker.github.io">mrchaker.github.io</a> <span>|</span>
+    <a href="https://github.com/mrchaker">github.com/mrchaker</a> <span>|</span>
+    <a href="https://www.linkedin.com/in/chaker-atallah">linkedin.com/in/chaker-atallah</a>
+  </div>
+  <p class="summary">
+    Full-stack / backend engineer with 5 years building and scaling production platforms in
+    TypeScript, React, Node.js and PostgreSQL on AWS / GCP. Comfortable across the stack — from
+    distributed systems, queues and infrastructure to polished React frontends — and used to owning
+    features end to end, from design through deployment and on-call. Master's in Computer Science (AI)
+    with strong algorithm and data-structure problem-solving skills. Based in Montpellier, France.
+  </p>
+</header>
+
+<section>
+  <h2>Work Experience</h2>
+
+  <div class="entry">
+    <div class="title">Software Platform Engineer — Activepieces</div>
+    <div class="meta"><b>San Francisco</b> · Sep. 2025 — Present</div>
+    <ul>
+      <li>Optimized workflow execution <b>10x</b> by rewriting the service that installs and compiles app integrations</li>
+      <li>Built a <b>canary release system</b> that rolls new versions out to a small set of platforms first, catching issues before they reach production customers</li>
+      <li>Rewrote the distributed rate limiter into <b>shared concurrency pools</b> backed by Redis Lua scripts, letting enterprise customers pool execution limits across projects</li>
+      <li>Improved observability with a <b>health dashboard</b> surfacing run success rates, live queue depth and 30-day history, plus per-worker sandbox state/RAM monitoring</li>
+      <li>Built performance tracking and hardware checking for self-hosted customers</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="title">Full-Stack Engineer — Fixily</div>
+    <div class="meta"><b>Algeria</b> · Apr. 2024 — Oct. 2025</div>
+    <ul>
+      <li>Led a 5-person team building a services marketplace that reached <b>10,000+ users</b> and 10+ daily service posts</li>
+      <li>Designed scalable architecture with <b>Django REST + Celery + PostgreSQL</b> on GCP, achieving 0 downtime</li>
+      <li>Established staging/production deployment workflows — under <b>3-minute</b> deploys</li>
+      <li>Reviewed 20+ pull requests to maintain code quality and standards</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="title">Full-Stack Developer — SPM Consultants</div>
+    <div class="meta"><b>Remote, UAE</b> · Jun. 2023 — Apr. 2024</div>
+    <ul>
+      <li>Built a project-management SaaS used by dozens of <b>Saudi government establishments</b>, stable under high load</li>
+      <li>Shipped 5+ user-requested features into a large-scale <b>React</b> platform</li>
+      <li>Built Google-Drive-grade file management with rich sharing rules (share with users except, group shares)</li>
+      <li>Cut bugs found in QA by <b>80%+</b> through consistent review sessions</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="title">Fullstack Developer — Pinely International</div>
+    <div class="meta"><b>Remote, Czechia</b> · Jun. 2022 — May. 2023</div>
+    <ul>
+      <li>Engineered a desktop POS app for drive-thru establishments with <b>Tauri, Rust, React</b></li>
+      <li>Reduced order processing time by <b>20%</b> while improving customer satisfaction</li>
+      <li>Integrated cloud-based and on-premise POS systems with the desktop app</li>
+      <li>Implemented CI/CD pipelines, cutting deployment time by 20%</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <div class="skill"><b>Frontend:</b> TypeScript, JavaScript, React, Next.js, React Native, Redux, Tailwind CSS, HTML5, CSS3</div>
+  <div class="skill"><b>Backend:</b> Node.js, Express, Nest.js, PostgreSQL, MySQL, MongoDB, DynamoDB, GraphQL, Rust, Gleam</div>
+  <div class="skill"><b>DevOps &amp; Cloud:</b> AWS, GCP, Docker, Kubernetes, Terraform, Serverless, CI/CD, Redis, Supabase, Firebase</div>
+  <div class="skill"><b>AI:</b> LLMs, OpenAI, Claude</div>
+  <div class="skill"><b>Languages:</b> English, Arabic, French</div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <div class="proj"><b>quran-e-learn</b> — <span class="desc">E-learning platform for Quranic students with realtime lessons over text and video chat.</span> <span class="stack">GraphQL · WebSockets · WebRTC</span></div>
+  <div class="proj"><b>pongo</b> — <span class="desc">Real-estate SaaS that helped 50+ agents in Iceland find thousands of clients, with realtime updates.</span> <span class="stack">React · Firebase</span></div>
+  <div class="proj"><b>web2app</b> — <span class="desc">Turns any URL into a cross-platform desktop app in under 2 minutes.</span> <span class="stack">Tauri · Rust</span></div>
+  <div class="proj"><b>writerly</b> — <span class="desc">A new markup language with a hand-written parser.</span> <span class="stack">Gleam</span></div>
+  <div class="proj"><b>fast-traiteur</b> — <span class="desc">Mobile app for food delivery.</span> <span class="stack">React Native</span></div>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="title">Master's in Computer Science — AI field · 16.25/20</div>
+    <div class="meta"><b>Higher School of Computer Science, Sidi Bel Abbes</b> · 2019 — 2024</div>
+  </div>
+</section>
+
+</body>
+</html>
